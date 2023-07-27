@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  index = 0
+  btnClass: any;
+  iptClass: any;
+
+  tabChange(data: number) {
+    this.index = data
+  }
+  btnClickHandler() {
+    if(this.btnClass) {
+      this.btnClass = ''
+      this.iptClass = ''
+    }
+    else {
+      this.btnClass = 'close'
+      this.iptClass = 'square'
+    }
+  }
 }

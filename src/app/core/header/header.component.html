@@ -15,14 +15,27 @@
             <a routerLink="/login">Login</a>
             <a routerLink="/register">Register</a>
         </div>
+        <!-- 
         <div class="search-box">
-            <button class="btn-search"><i class="fas fa-search"></i></button>
+            <button class="btn-search"><i class="fas fa-search" [ngClass]="btnClass">
+                </i>
+            </button>
             <input 
                type="text" 
                class="input-search" 
                placeholder="Type to Search..."
-            
+               [ngClass]="iptClass"
+               (click)="btnClickHandler()"
                 />
         </div>
+        -->
+        <div class="search-box">
+            <form id="content">
+              <input type="text" name="input" class="input lens" [ngClass]="iptClass">
+              <button type="reset" class="search"  [ngClass]="btnClass" (click)="btnClickHandler()"></button>
+            </form>
+            </div>
+
+
     </nav>
 </header>

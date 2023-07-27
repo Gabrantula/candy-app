@@ -89,6 +89,7 @@ body {
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-decoration: none;
 }
 #home-page .welcome .dashboard:hover {
   box-shadow: 2px 4px 10px rgb(236, 49, 146);

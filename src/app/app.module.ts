@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ProfileModule } from './profile/profile.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ProfileModule
+    ProfileModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

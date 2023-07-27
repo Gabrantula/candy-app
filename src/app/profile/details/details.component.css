@@ -15,8 +15,7 @@
     display: flex;
     flex-direction: row;
     width: 85%;
-   padding-top: 5%;
-   padding-bottom: 5%;
+
     border-radius: 10px;
    /* overflow: hidden;*/
     background-color: rgb(252, 245, 238);
@@ -25,11 +24,16 @@
     position: relative;
     border: 0.1px solid rgb(158, 92, 126);
 }
-#details-page #details-wrapper img {
+#details-page #details-wrapper .imG {
+    height: 100%;
     width: 40%;
-   /* height: 45vh;*/
+}
+#details-page #details-wrapper img {
+    width: 100%;
+    height: 100%;
 }
 #details-page #details-wrapper #info-wrapper {
+    margin-bottom: 3%;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
@@ -54,6 +58,7 @@ position: relative;
 }
 
 /* buttons */
+/*
 #details-page #details-wrapper #info-wrapper .action-btn .action {
     border-radius: 23px;
     background-image: linear-gradient(to right top, #d16ba5, #ec7e93, #f99887, #f9b687, #f3d495, #e7e29e, #daefae, #ccfbc2, #b5fcc9, #9cfcd4, #80fce1, #5ffbf1);
@@ -66,7 +71,7 @@ position: relative;
     transition: all 300ms ease-in-out;
     margin-right: 10px;
     padding: 10px 50px 10px 50px;
-    /*font-family:Arial, Helvetica, sans-serif;*/
+    
     font-family: 'Courgette', cursive;
     font-weight: bold;
     text-decoration: none;
@@ -107,7 +112,71 @@ font-size: 20px;
     cursor: pointer;
 }
 #details-page #details-wrapper #info-wrapper .more span a:hover {
-  /* text-shadow:1px 1px 1px rgb(242, 164, 204);*/
+
+   text-decoration: underline;
+}
+span {
+    color: inherit;
+}
+*/
+
+#details-page #details-wrapper .action-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 6%;
+    right: 2%;
+    
+}
+
+#details-page #details-wrapper .action-btn .action {
+    border-radius: 23px;
+    background-image: linear-gradient(to right top, #d16ba5, #ec7e93, #f99887, #f9b687, #f3d495, #e7e29e, #daefae, #ccfbc2, #b5fcc9, #9cfcd4, #80fce1, #5ffbf1);
+    color: rgb(91, 134, 214);
+    border:0.5px solid rgb(67, 176, 198);
+    text-transform: lowercase;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    margin-right: 10px;
+    padding: 10px 50px 10px 50px;
+    font-family: 'Courgette', cursive;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+#details-page #details-wrapper .action-btn .action:hover {
+    box-shadow: 2px 4px 10px rgb(236, 49, 146);
+    border: 1px solid rgb(236, 49, 146);
+    color: #50d7bc;
+    text-shadow: 1px 1px 1px  #35a992;
+}
+
+#details-page #details-wrapper .action-btn .auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#details-page #details-wrapper .more {
+    position: absolute;
+   bottom: 2%;
+   right: 5%;
+}
+#details-page #details-wrapper .more span {
+color: rgb(91, 134, 214);
+font-size: 20px;
+}
+#details-page #details-wrapper .more span a {
+    color: rgb(236, 49, 146);
+    cursor: pointer;
+}
+#details-page #details-wrapper .more span a:hover {
+
    text-decoration: underline;
 }
 span {

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+footer {
+    background-color: #d8fcf5;
+    font-weight: bolder;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    border-top: 2px solid #50d7bc;
+    padding-bottom: 8px;
+    z-index: 2;
+
+}
+footer p {
+    font-size: 25px;
+    color: rgb(35, 78, 157);
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    margin: 0px;
+  
+}
+footer p a {
+    font-family: 'Courgette', cursive;
+    text-decoration: none;
+    color: inherit;
+    
+}
+footer p a:hover {
+    color: #50d7bc;
+    text-shadow: 1px 1px 1px  #35a992;
+}
+footer span {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 768px) {
+   
+    footer p {
+        margin: auto 1%;
+        padding-top: 1.5%;
+        font-size: 21px;
+    }
+    footer span {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 400px) {
+
+    footer p {
+        margin: auto 1%;
+        padding-top: 1.5%;
+        font-size: 18px;
+    }
+    footer span {
+        font-size: 15px;
+    }
+}

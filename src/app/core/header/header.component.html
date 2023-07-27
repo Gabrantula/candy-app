@@ -1,0 +1,28 @@
+<header>
+    <a id="logo" routerLink="/home">
+        <img src="./assets/home-btn copy.jpg" alt="home-pic"></a>
+    <nav>
+        <div>
+            <a routerLink="/catalog">Catalog</a>
+        </div>
+        <div id="user">
+            <span>Welcome user</span>
+            <a routerLink="/create">Add Recipe</a>
+            <a routerLink="/my-recipes">My Recipes</a>
+            <a id="logoutBtn" routerLink="javascript:void(0)">Logout</a>
+        </div>
+        <div id="guest">
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">Register</a>
+        </div>
+        <div class="search-box">
+            <button class="btn-search"><i class="fas fa-search"></i></button>
+            <input 
+               type="text" 
+               class="input-search" 
+               placeholder="Type to Search..."
+            
+                />
+        </div>
+    </nav>
+</header>

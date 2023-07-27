@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+#catalog-page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    background-color: rgb(251, 243, 249);
+   
+   
+}
+#catalog-page .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-evenly;
+   /* justify-content: space-around;*/
+    width: 100%;
+    height: 100%;
+
+}
+#catalog-page h1 {
+    font-family: 'Courgette', cursive;
+    font-size: 50px;
+    letter-spacing: 2px;
+    color:  #50d7bc;
+    text-shadow: 1px 1px 2px rgb(91, 134, 214);
+   /* color:rgb(35, 78, 157);*/
+    margin: 10px auto 30px auto;
+}
+
+#catalog-page .card .img img {
+    width: 100%;
+    height: 300px;
+}
+#catalog-page .card {
+   /* border-radius: 10px;*/
+    overflow: hidden;
+    background-color: rgb(252, 245, 238);
+    box-shadow: 5px 5px 5px rgb(158, 92, 126);
+    width: 300px;
+    height: 500px;
+    margin-bottom: 20px;
+    
+}
+#catalog-page .card:hover {
+box-shadow: 7px 7px 7px 7px rgb(158, 92, 126);
+}
+#catalog-page .card .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+#catalog-page .card .info p {
+    font-size: 27px;
+    font-family: 'Courgette', cursive;
+    color:rgb(91, 134, 214);
+    text-shadow: 1px 1px 2px #50d7bc;
+    text-align: center;
+    margin-top: 10px;
+}
+#catalog-page .card .info .btn {
+    border-radius: 23px;
+    background-image: linear-gradient(to right top, #d16ba5, #ec7e93, #f99887, #f9b687, #f3d495, #e7e29e, #daefae, #ccfbc2, #b5fcc9, #9cfcd4, #80fce1, #5ffbf1);
+    color: rgb(91, 134, 214);
+    border:0.5px solid rgb(67, 176, 198);
+    padding: 10px 50px 10px 50px;
+    text-transform: lowercase;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    margin-top: 7%;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+    font-family: 'Courgette', cursive;
+    font-weight: bold;
+    text-decoration: none;
+}
+#catalog-page .card .info .btn:hover {
+    box-shadow: 2px 4px 10px rgb(236, 49, 146);
+    border: 1px solid rgb(236, 49, 146);
+    color: #50d7bc;
+    text-shadow: 1px 1px 1px  #35a992;
+      
+}
+/*no cards */
+#catalog-page .no-cards-view {
+    margin-top: 70px;
+}
+#catalog-page .no-cards-view img {
+    border:solid 2px gray;
+}
+
+/* responsive */
+
+@media screen and (max-width: 768px){
+    #catalog-page h1 {
+        font-size: 35px;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 400px) {
+    #catalog-page h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+}

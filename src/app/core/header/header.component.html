@@ -8,7 +8,7 @@
         <div id="user">
             <span>Welcome user</span>
             <a routerLink="/create">Add Recipe</a>
-            <a routerLink="/my-recipes">My Recipes</a>
+            <a routerLink="/my-page">My Recipes</a>
             <a id="logoutBtn" routerLink="javascript:void(0)">Logout</a>
         </div>
         <div id="guest">
@@ -31,7 +31,7 @@
         -->
         <div class="search-box">
             <form id="content">
-              <input type="text" name="input" class="input lens" [ngClass]="iptClass">
+              <input type="text" name="input" class="input lens" [ngClass]="iptClass" >
               <button type="reset" class="search"  [ngClass]="btnClass" (click)="btnClickHandler()"></button>
             </form>
             </div>

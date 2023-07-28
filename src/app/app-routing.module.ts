@@ -9,6 +9,7 @@ import { EditComponent } from './profile/edit/edit.component';
 import { MyPageComponent } from './profile/my-page/my-page.component';
 import { DetailsComponent } from './profile/details/details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { GabyPageComponent } from './gaby-page/gaby-page.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/home'},
@@ -28,6 +29,8 @@ const routes: Routes = [
   {path: 'my-page', component: MyPageComponent},
 
   {path: 'details', component: DetailsComponent},
+
+  {path: 'Gaby-page', component: GabyPageComponent},
   
   {path: '**', component: NotFoundComponent}
 ];

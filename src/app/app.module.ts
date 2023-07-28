@@ -11,6 +11,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ProfileModule } from './profile/profile.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { GabyPageComponent } from './gaby-page/gaby-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     AuthenticateComponent,
     HomeComponent,
     CatalogComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GabyPageComponent
   ],
   imports: [
     BrowserModule,

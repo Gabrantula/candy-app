@@ -12,7 +12,7 @@
 }
 #login-page .form {
      width: 500px;
-     height: 520px; 
+     height: 540px; 
      border-radius: 20px;
      box-shadow: 5px 5px 5px rgb(158, 92, 126);
      display: flex;
@@ -91,3 +91,16 @@
   text-shadow: 1px 1px 1px  #35a992;
     
  }
+
+ /* errors  */
+
+ #login-page .form-login .error {
+    text-align: center;
+    color: red;
+    padding-top: 0;
+    font-size: 18px;
+    text-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+

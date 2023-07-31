@@ -10,13 +10,25 @@ import { MyPageComponent } from './profile/my-page/my-page.component';
 import { DetailsComponent } from './profile/details/details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GabyPageComponent } from './gaby-page/gaby-page.component';
+import { ErrorComponent } from './core/error/error.component';
+import { CommentsComponent } from './comments/comments.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/home'},
 
   {path: 'home', component: HomeComponent},
 
-  {path: 'catalog', component: CatalogComponent},
+  {path: 'auth',
+   loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),},
+
+   {path: 'catalog', component: CatalogComponent},
+
+   {path: 'Gaby-page', component: GabyPageComponent},
+
+   {path: 'details', component: DetailsComponent},
+
+   {path: 'comments', component: CommentsComponent},
+ /* 
 
   {path: 'login', component: LoginComponent},
 
@@ -28,9 +40,10 @@ const routes: Routes = [
 
   {path: 'my-page', component: MyPageComponent},
 
-  {path: 'details', component: DetailsComponent},
+  ,
 
-  {path: 'Gaby-page', component: GabyPageComponent},
+  */
+  {path: 'error', component: ErrorComponent},
   
   {path: '**', component: NotFoundComponent}
 ];

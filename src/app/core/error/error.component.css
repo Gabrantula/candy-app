@@ -1,0 +1,16 @@
+.notification {
+    position: fixed;
+    z-index: 10;
+    right: 22%;
+    top: 40%;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    color: red;
+    font-style: italic;
+    text-decoration: underline;
+    box-shadow: 0 5px 10px rgb(204, 204, 204);
+    background-color: #d8fcf5;
+    font-size: 25px;
+  }
+ 
+ 

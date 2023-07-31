@@ -38,6 +38,7 @@ margin-right: 5%;
 margin-top: 20px;
 }
 
+
 header nav div a{
 margin-left: 20px;
 text-decoration: none;
@@ -62,7 +63,7 @@ nav span {
 .search-box{
   width: fit-content;
   height: fit-content; 
-  
+ 
 }
 
 /*
@@ -129,12 +130,16 @@ color:rgb(91, 134, 214);
 */
 
 #content {
+
   position: relative;
   height: 40px;
-  width: 200px;
+  width: 180px;
+  
   margin-left: 170px;
+  
   top: 50%;
-  left: 75%;
+
+  left: 65%;
   
   transform: translate(-50%, -50%);
 

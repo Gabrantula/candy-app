@@ -12,7 +12,7 @@
 }
  #register-page .form {
      width: 500px;
-     height: 730px; 
+     height: 740px; 
      border-radius: 20px;
      box-shadow: 5px 5px 5px rgb(158, 92, 126);
      display: flex;
@@ -26,7 +26,7 @@
  
  #register-page .form h2 {
     font-family: 'Courgette', cursive;
- font-size: 60px;
+ font-size: 50px;
  color:  #50d7bc;
  text-shadow: 1px 1px 2px rgb(91, 134, 214);
 margin-bottom: 0;
@@ -37,7 +37,7 @@ margin-bottom: 0;
     font-family: 'Courgette', cursive;
     color:rgb(91, 134, 214);
     text-shadow: 1px 1px 2px #50d7bc;
-     font-size: 35px;
+     font-size: 30px;
      margin-bottom: 5px;
  }
  #register-page .form input {
@@ -94,3 +94,14 @@ margin-bottom: 0;
   text-shadow: 1px 1px 1px  #35a992;
     
  }
+/* errors  */
+
+#register-page .form-register .error {
+    text-align: center;
+    color: red;
+    padding-top: 0;
+    font-size: 18px;
+    text-shadow: none;
+    margin: 0;
+    padding: 0;
+  }

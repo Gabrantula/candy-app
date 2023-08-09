@@ -1,7 +1,17 @@
-<section id="catalog-page">
+<section id="catalog-page" *ngIf="!isLoading">
     <h1>All shared candy recipes</h1>
-    <div class="card-container">
-        <div class="card">
+
+    <div class="card-container" >
+        <div class="card" *ngFor="let theme of catalog">
+            <div class="img">
+                <img src="{{theme.imageUrl}}" alt="candy">
+            </div>
+            <div class="info">
+                <p>{{theme.themeName }}</p>
+                <a class="btn" [routerLink]="theme._id">Details</a>
+            </div>
+        </div>
+        <!-- <div class="card">
             <div class="img">
                 <img src="/assets/catalog-img/card-1 copy.jpg" alt="candy-1">
             </div>
@@ -9,8 +19,8 @@
                 <p>Lollipop</p>
                 <a class="btn" routerLink="/details">Details</a>
             </div>
-        </div>
-        <div class="card">
+            </div>
+             <div class="card">
             <div class="img">
                 <img src="/assets/catalog-img/card-2 copy.jpg" alt="candy-2">
             </div>
@@ -27,7 +37,8 @@
                 <p>French macaron</p>
                 <a class="btn" routerLink="/details">Details</a>
             </div>
-        </div>
+        </div> -->
+       
     </div>
-    <h1>No candy recipes in database.</h1>
+    <h1 *ngIf="catalog.length === 0">No candy recipes in database.</h1>
 </section>

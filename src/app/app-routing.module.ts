@@ -21,13 +21,14 @@ const routes: Routes = [
   {path: 'auth',
    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),},
 
-   {path: 'catalog', component: CatalogComponent},
+   /*
+   {path: 'catalog', component: CatalogComponent},*/
 
    {path: 'Gaby-page', component: GabyPageComponent},
 
-   {path: 'details', component: DetailsComponent},
+  /* {path: 'details', component: DetailsComponent},*/
 
-   {path: 'comments', component: CommentsComponent},
+  // {path: 'comments', component: CommentsComponent},
  /* 
 
   {path: 'login', component: LoginComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
   ,
 
   */
+
   {path: 'error', component: ErrorComponent},
   
   {path: '**', component: NotFoundComponent}

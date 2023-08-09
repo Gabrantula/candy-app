@@ -12,7 +12,7 @@ import {
   import { ErrorService } from './core/error/error.service';
   
   const { apiUrl } = environment;
-  
+
   @Injectable()
   export class AppInterceptor implements HttpInterceptor {
     constructor(private router: Router, private errorServie: ErrorService) {}
@@ -32,7 +32,11 @@ import {
         catchError((err) => {
           if (err.status === 401) {
             this.router.navigate(['/auth/login']);
-          } else {
+          } else if(err.status === 403) {
+localStorage.removeItem('auth-token')
+localStorage.clear()
+          } 
+          else {
             this.errorServie.setError(err);
             this.router.navigate(['/error']);
           }
@@ -42,7 +46,7 @@ import {
       );
     }
   }
-  
+
   export const appInterceptorProvider: Provider = {
     multi: true,
     useClass: AppInterceptor,

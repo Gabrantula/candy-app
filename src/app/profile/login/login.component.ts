@@ -15,15 +15,45 @@ export class LoginComponent {
 
   constructor(private userService: UserService, private router: Router) {}
 
-  login(form: NgForm) {
+ /* login(form: NgForm) {
     if(form.invalid) {
       return
     }
 
     const { email, password } = form.value
 
-    this.userService.login(email, password).subscribe(() => {
+    this.userService.login(email, password).subscribe((res: any) => {
+      console.log('res', res.accessToken);
+      localStorage.setItem("auth-token", res.accessToken)
+      
       this.router.navigate(['/home'])
     })
+  }*/
+  login(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+  
+    const { email, password } = form.value;
+  
+    this.userService.login(email, password).subscribe(
+      (res: any) => {
+        console.log('Login response:', res); // Log the entire response object
+  
+        if (res && res.accessToken) {
+          console.log('res', res.accessToken);
+          localStorage.setItem('auth-token', res.accessToken);
+          this.router.navigate(['/home']);
+        } else {
+          console.error('Login response does not have accessToken property');
+        }
+      },
+      (error) => {
+        console.error('Login error:', error);
+        // Handle the error as needed
+      }
+    );
   }
+  
+  
 }

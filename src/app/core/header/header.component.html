@@ -3,15 +3,17 @@
         <img src="./assets/home-btn copy.jpg" alt="home-pic"></a>
     <nav>
         <div>
-            <a routerLink="/catalog">Catalog</a>
+            <a routerLink="/themes">Catalog</a>
         </div>
-        <div id="user">
-            <span>Welcome user</span>
+        <div id="user" *ngIf="isLoggedIn">
+           
             <a routerLink="/auth/create">Add Recipe</a>
             <a routerLink="/auth/my-page">My Recipes</a>
-            <a id="logoutBtn" routerLink="javascript:void(0)">Logout</a>
+            <span>Welcome, {{username}}</span>
+            <a id="logoutBtn" (click)="logout()">Logout</a>
+           
         </div>
-        <div id="guest">
+        <div id="guest" *ngIf="!isLoggedIn">
             <a routerLink="/auth/login">Login</a>
             <a routerLink="/auth/register">Register</a>
         </div>

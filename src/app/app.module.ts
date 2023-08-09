@@ -18,29 +18,33 @@ import { SharedModule } from './shared/shared.module';
 import { appInterceptorProvider } from './app.interceptor';
 import { SliderComponent } from './slider/slider.component';
 import { CommentsComponent } from './comments/comments.component';
+import { ProfileModule } from './profile/profile.module';
+import { authInterceptorProvider } from './auth.interceptor';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    AuthenticateComponent,
     HomeComponent,
     CatalogComponent,
     NotFoundComponent,
     GabyPageComponent,
     SliderComponent,
     CommentsComponent,
+    AuthenticateComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     CoreModule,
     SharedModule,
+    ProfileModule,
     RouterModule,
     AppRoutingModule,
+    
   ],
-  providers: [appInterceptorProvider],
+  providers: [appInterceptorProvider, authInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

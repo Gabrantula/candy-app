@@ -1,6 +1,7 @@
 <section id="details-page">
-    <div id="details-wrapper">
-        <div class="imG">
+    <div id="details-wrapper" *ngIf="theme">
+
+        <!--   <div class="imG">
             <img src="/assets/catalog-img/card-3 copy.jpg" alt="details">
         </div>
 
@@ -27,6 +28,32 @@
             </div>
             <div class="not-auth">
                 <a class="action" routerLink="/comments">Comments</a>
+            </div>
+        </div>
+
+        <div class="more">
+            <span>See more recipes from <a routerLink="/my-page">Gaby Ts</a> </span>
+        </div>-->
+        <div class="imG">
+            <img src="{{theme.imageUrl}}" alt="details">
+        </div>
+
+
+        <div id="info-wrapper">
+            <h2>{{theme.themeName}}</h2>
+            <p>{{theme.postText}}</p>
+           
+           
+        </div>
+
+        <div class="action-btn">
+            <div class="auth" *ngIf="isLogged && isOwner(theme._ownerId)">
+                 <a class="action" routerLink="edit">Edit</a>
+                <!-- <a class="action" (click)="toggleEditMode()">Edit</a>-->
+                <a class="action" routerLink="javascript:void(0)">Delete</a>
+            </div>
+            <div class="not-auth" *ngIf="isLogged && !isOwner(theme._ownerId)">
+                <a class="action" routerLink="comments">Comments</a>
             </div>
         </div>
 

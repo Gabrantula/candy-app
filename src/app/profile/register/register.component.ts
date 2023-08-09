@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   form = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(5)]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
     email: [
       '',
       [Validators.required, appEmailValidator(DEFAULT_EMAIL_DOMAINS)],
@@ -51,7 +51,7 @@ export class RegisterComponent {
     this.userService
       .register(username!, email!, password!, rePass!)
       .subscribe(() => {
-        this.router.navigate(['/catalog']);
+        this.router.navigate(['/themes']);
       });
   }
 }

@@ -1,10 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
+import { Recipes } from 'src/app/types/theme';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-my-page',
   templateUrl: './my-page.component.html',
-  styleUrls: ['./my-page.component.css']
+  styleUrls: ['./my-page.component.css'],
 })
-export class MyPageComponent {
+export class MyPageComponent implements OnInit {
+  recipes: Recipes[] = [];
 
+  constructor(private apiService: ApiService, private userService: UserService) { }
+
+  ngOnInit(): void {
+    /*
+    const userId = this.userService.getUserId()
+
+    if(userId) {
+      this.apiService.getRecipesByUserId(userId).subscribe((recipes) => {
+        this.recipes = recipes;
+      })
+    }
+    */
+    const loggedInUserId = this.userService.getUserId()
+
+    if (loggedInUserId) {
+      this.apiService.getRecipesByUserId(loggedInUserId).subscribe({
+        next: (myRecipes) => {
+          this.recipes = myRecipes.filter((recipe) => recipe._ownerId === loggedInUserId)
+          console.log(loggedInUserId);
+          
+        },
+        error: (error) => {
+          console.error('Error fetching recipes:', error)
+        }
+      })
+    }
+  }
 }

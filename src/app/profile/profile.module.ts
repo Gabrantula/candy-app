@@ -28,12 +28,12 @@ import { ProfileRoutingModule} from './profile-routing.module'
     ReactiveFormsModule,
   ],
   exports: [
-    LoginComponent,
-    RegisterComponent,
-    CreateComponent,
-    EditComponent,
-    MyPageComponent,
-    DetailsComponent
+  //  LoginComponent,
+   // RegisterComponent,
+  //  CreateComponent,
+   // EditComponent,
+  //  MyPageComponent,
+  //  DetailsComponent
   ]
 })
 export class ProfileModule { }

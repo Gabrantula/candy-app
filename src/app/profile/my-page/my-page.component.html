@@ -1,4 +1,5 @@
-<section id="my-page">
+
+<!--<section id="my-page">
     <p>My recipes count: </p>
     <div class="all-my-cards">
         <div class="card">
@@ -21,4 +22,19 @@
         </div>
     </div>
     <h2>No recipes in database.</h2>
+</section> -->
+<section id="my-page">
+    <p>My recipes count: {{ recipes.length }}</p>
+    <div class="all-my-cards">
+        <div class="card" *ngFor="let recipe of recipes">
+            <div class="img">
+                <img [src]="recipe.imageUrl" [alt]="recipe.themeName">
+            </div>
+            <div class="info">
+                <p>{{ recipe.themeName }}</p>
+                <a class="btn" [routerLink]="'/details/' + recipe._id">Details</a>
+            </div>
+        </div>
+    </div>
+    <h2 *ngIf="recipes.length === 0">No recipes in database.</h2>
 </section>

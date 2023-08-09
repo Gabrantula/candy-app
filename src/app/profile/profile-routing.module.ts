@@ -5,8 +5,11 @@ import { RegisterComponent } from './register/register.component';
 import { MyPageComponent } from './my-page/my-page.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { DetailsComponent } from './details/details.component';
+import { MainComponent } from '../main/main.component';
+import { CommentsComponent } from '../comments/comments.component';
 
-// import { AuthActivate } from '../core/guards/auth.activate';
+ import { AuthActivate } from '../core/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -22,18 +25,40 @@ const routes: Routes = [
   {
     path: 'my-page',
     component: MyPageComponent,
-    // canActivate: [AuthActivate],
+     canActivate: [AuthActivate],
   },
   {
     path: 'create',
     component: CreateComponent,
-    // canActivate: [AuthActivate],
+     canActivate: [AuthActivate],
   },
+
   {
-    path: 'edit',
-    component: EditComponent,
-    // canActivate: [AuthActivate],
+    path: 'themes',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: MainComponent,
+      },
+      {
+        path: ':themeId',
+        component: DetailsComponent,
+        // canActivate: [AuthActivate],
+      },
+      {
+        path: ':themeId/comments', component: CommentsComponent
+      },
+      {
+        path: ':themeId/edit',
+        component: EditComponent,
+         canActivate: [AuthActivate],
+      },
+    ]
   },
+ 
+  
+ 
 ];
 
 @NgModule({

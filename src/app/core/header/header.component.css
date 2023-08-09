@@ -18,7 +18,7 @@ header {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    margin-left: 35px;
+    margin-left: 30px;
     cursor: pointer;
 }
 #logo img:hover {
@@ -28,7 +28,7 @@ header {
 header nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
 font-size: 30px;
 font-family: 'Courgette', cursive;
@@ -52,7 +52,8 @@ header nav div a:hover {
     text-shadow: 1px 1px 1px  #35a992;
 }
 nav span {
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-right: 20px;
     color: rgb(236, 49, 146);
 }
 

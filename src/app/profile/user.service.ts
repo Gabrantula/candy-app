@@ -116,7 +116,7 @@ login(email: string, password: string): Observable<UserId> {
         console.log(headers);
         this.user$$.next(user);
       }),
-      // Chain another observable to retrieve the userId after the login request
+    
       mergeMap(() => {
         return this.http.get<UserId>(`${baseUrl}/profile`, { headers });
       }),

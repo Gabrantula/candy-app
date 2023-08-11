@@ -59,20 +59,5 @@ export class AuthenticateComponent implements OnInit {
     });
   }
 
-  /*
-  login(form: NgForm): void {
-    if (form.valid) {
-      this.userService.login(this.email, this.password).subscribe({
-        next: () => {
-          this.isAuthenticated = true;
-          // Redirect or perform actions after successful login
-        },
-        error: () => {
-          this.isAuthenticated = false;
-          // Handle login error, display error messages, etc.
-        }
-      });
-    }
-  }
-  */
+
 }

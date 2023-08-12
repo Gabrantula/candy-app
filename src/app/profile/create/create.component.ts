@@ -1,9 +1,9 @@
 import { Component, Inject, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/_services/api.service';
-import { Recipes } from 'src/app/types/theme';
+//import { Recipes } from 'src/app/types/theme';
 
 
 @Component({
@@ -12,12 +12,12 @@ import { Recipes } from 'src/app/types/theme';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  @Input()
-  accessToken!: string;
+ // @Input()
+ // accessToken!: string;
   
   constructor(private apiService: ApiService, private router: Router) { }
 
-  obs$ = new Observable()
+ // obs$ = new Observable()
 
   create(form: NgForm): void {
     if (form.invalid) {

@@ -5,7 +5,7 @@
         <div>
             <a routerLink="/themes">Catalog</a>
         </div>
-         <div id="user" *ngIf="isLoggedIn"> 
+         <div id="user" *ngIf="this.authService.isLoggedIn"> 
    
            
             <a routerLink="/auth/create">Add Recipe</a>
@@ -14,7 +14,7 @@
             <a id="logoutBtn" (click)="logout()">Logout</a>
            
         </div>
-           <div id="guest" *ngIf="!isLoggedIn">
+           <div id="guest" *ngIf="!this.authService.isLoggedIn">
    
             <a routerLink="/auth/login">Login</a>
             <a routerLink="/auth/register">Register</a>

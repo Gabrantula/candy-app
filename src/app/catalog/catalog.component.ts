@@ -15,12 +15,11 @@ export class CatalogComponent implements OnInit{
 
  constructor(private apiService: ApiService, private userService: UserService) {}
 
- 
+ /*
  get isLogged(): boolean {
   return this.userService.isLoggedIn()
- }
+ }*/
  ngOnInit(): void {
-  
   
    this.apiService.getRecipes().subscribe({
     next: (themes) => {

@@ -21,19 +21,10 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]],
 
   });
-  isLoggedIn = false;
-  //isLoginFailed = false
+ 
   errorMessage = ''
-  //roles: string[] = []
-
+  
   constructor(private authService: AuthService, private userService: UserService, private router: Router, private fb: FormBuilder,) { }
-
-  ngOnInit(): void {
-    if (this.userService.isLoggedIn()) {
-      this.isLoggedIn = true
-     // this.roles = this.userService.getUser().roles
-    }
-  }
 
   login(): void {
     if (this.form.invalid) {
@@ -51,23 +42,36 @@ export class LoginComponent implements OnInit {
       
    this.authService.login(email!, password!)
       .subscribe({
-        next: data => {
-          this.userService.saveUser(data)
-          console.log(data);
-          
-          this.isLoggedIn = true
-      
+        next: (res) => {
+          if(res.accessToken) {
+            this.userService.clearUser
+
+            this.userService.saveUser('accessToken', res.accessToken)
+            this.userService.saveUser('email', res.email)
+            this.userService.saveUser('username', res.username)
+            this.userService.saveUser('userId', res._id)
+          }
+       
+         this.authService.isLoggedIn = true
           this.router.navigate(['/'])
         },
-        error: err => {
-          this.errorMessage = err.error.message;
-       
+        error: (err) => {
+          if(err.status === 403) {
+            alert('Wrong Email or Password')
+            this.errorMessage = err.error.message;
+          } else {
+            
+            this.errorMessage = err.error.message;
+            alert(this.errorMessage)
+          }
         }
       })
   }
-
-  //reloadPage(): void {
-  //  window.location.reload()
- // }
+  ngOnInit(): void {
+  localStorage.clear()
+  this.authService.isLoggedIn = false
+    
+  }
+ 
 }
 

@@ -28,16 +28,16 @@ export class ApiService implements OnDestroy {
 
   constructor(private http: HttpClient, private userService: UserService) {
     //
-    
+
     this.subscription = this.theme$.subscribe((theme) => {
       this.theme = theme
     })
   }
 
-  
+
   getRecipesByUserId(userId: string): Observable<Recipes[]> {
 
-    
+
     let { apiUrl } = environment;
     return this.http.get<Recipes[]>(`${apiUrl}/recipes?_ownerId=${userId}`, httpOptions)
   }
@@ -45,63 +45,47 @@ export class ApiService implements OnDestroy {
   //catalog
   getRecipes() {
     let { apiUrl } = environment;
-    return this.http.get<Recipes[]>(`${apiUrl}`, httpOptions)
+    return this.http.get<Recipes[]>(`${apiUrl}`)
   }
 
   //details
   getRecipe(themeId: string) {
     const { apiUrl } = environment;
-    return this.http.get<Recipes>(`${apiUrl}/${themeId}`, httpOptions);
+    return this.http.get<Recipes>(`${apiUrl}/${themeId}`);
 
   }
 
-  getEditData(themeId: string): Observable<Recipes> {
+  edit(data: any, themeId: string): Observable<any> {
     const { apiUrl } = environment;
-    return this.http.get<Recipes>(`${apiUrl}/${themeId}`)
+
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('X-Authorization', '' + localStorage.getItem('accessToken'))
+    return this.http.put(`${apiUrl}/${themeId}`, data, {headers: headers})
   }
 
-  updateEditData(themeId: string, updateData: any): Observable<any> {
+
+  createRecipe(data: any): Observable<any> {
     const { apiUrl } = environment
-   // const headers = this.userService.getCommonHeaders()
+   const headers= new HttpHeaders()
+   .set('Content-Type', 'application/json')
+   .set('X-Authorization', '' + localStorage.getItem('accessToken'))
 
-    // return this.http.put(`${apiUrl}/${themeId}`, updateData, httpOptions)
-    return this.http.put(`${apiUrl}/${themeId}`, updateData)
-      .pipe(
-        catchError((error) => {
-          if (error.status === 401) {
-            console.error('Unauthorized access:', error)
-          }
-          else {
-            console.error('Error updating edit data:', error)
-          }
-          return throwError('Error updating edit data')
-        })
-      )
+    return this.http.post(`${apiUrl}`, data, {headers: headers})
+
   }
 
-
-  createRecipe(imageUrl: string, themeName: string, postText: string) {
+  delete(themeId: string): Observable<any> {
     const { apiUrl } = environment
-  //  const headers = this.userService.getCommonHeaders()
-    const requestBody = {
-      imageUrl,
-      themeName,
-      postText,
-      
-    }
- // console.log(headers);
-  
-//const requestOptions = this.createRequestOptions()
-return this.http.post<Recipes>(`${apiUrl}`, requestBody)
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('X-Authorization', '' + localStorage.getItem('accessToken'))
 
+    return this.http.delete(`${apiUrl}/${themeId}`, {
+      headers: headers
+    })
   }
 
-  
-  deleteRecipe(themeId: string) {
-    const { apiUrl } = environment
-    return this.http.delete<Recipes>(`${apiUrl}/${themeId}`)
-  }
-  
   getThemeAuthorId(themeId: string): Observable<string> {
     const { apiUrl } = environment
     return this.http.get<{ authorId: string }>(`${apiUrl}/${themeId}/_ownerId`)

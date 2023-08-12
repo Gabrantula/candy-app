@@ -1,4 +1,4 @@
-
+/*
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,10 +20,10 @@ interface Theme {
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  @Input()
-  accessToken!: string;
+ // @Input()
+ // accessToken!: string;
   
-  isSubmitting: boolean = false;
+ // isSubmitting: boolean = false;
 
   editRecipe: Theme = {
 
@@ -49,14 +49,9 @@ export class EditComponent implements OnInit {
 
   authorId?: string
 
-  ngOnInit(): void {
-    const themeId = this.activateRoute.snapshot.params['themeId']
-    this.fetchEditData(themeId)
 
-
-  }
   fetchEditData(themeId: string): void {
-    this.apiService.getEditData(themeId)
+    this.apiService.edit(themeId)
       .subscribe({
         next: (editData) => {
           
@@ -73,9 +68,9 @@ export class EditComponent implements OnInit {
           };
           this.form.patchValue(this.editRecipe);
          
-          this.authorId = editData._ownerId
+        //  this.authorId = editData._ownerId
 
-          console.log('authorId:', this.authorId);
+        //  console.log('authorId:', this.authorId);
 
         },
         error: (error) => {
@@ -85,7 +80,12 @@ export class EditComponent implements OnInit {
       });
   }
 
+  ngOnInit(): void {
+    const themeId = this.activateRoute.snapshot.params['themeId']
+    this.fetchEditData(themeId)
 
+
+  }
 
   saveEditHandler(): void {
     // console.log('saveEditHandler called');
@@ -93,14 +93,14 @@ export class EditComponent implements OnInit {
     // console.log(this.form.errors);
 
     const userId = this.userService.getUserId()
-    console.log('userId', userId);
-    console.log('authorId', this.authorId);
+   // console.log('userId', userId);
+    //console.log('authorId', this.authorId);
 
 
     if (userId && this.authorId && this.authorId === userId) {
       console.log('User is authorized to edit');
 
-      this.isSubmitting = true;
+     // this.isSubmitting = true;
       this.updateEditData();
     }
     else {
@@ -155,4 +155,69 @@ export class EditComponent implements OnInit {
   //toggleEditMode(): void {
   //   this.isEditMode = !this.isEditMode;
   // }
+}
+*/
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ApiService } from 'src/app/_services/api.service';
+import { appEditValidator } from 'src/app/shared/validators/app-edit-validators';
+import { Recipes } from 'src/app/types/theme';
+
+@Component({
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
+})
+export class EditComponent implements OnInit {
+
+  theme: Recipes | any
+/*
+  form = this.fb.group({
+    imageUrl: ['', [Validators.required, appEditValidator()]],
+    themeName: ['', [Validators.required]],
+    postText: ['', [Validators.required, Validators.minLength(10)]]
+  })
+*/
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private activateRoute: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  edit(form: NgForm): void {
+    if (form.invalid) {
+      alert('Some fields are either empty')
+      return;
+    }
+
+    const value: { themeName: string, imageUrl: string, postText: string } = form.value
+
+    this.apiService.edit(value, this.theme._id).subscribe({
+      next: (res) => {
+        this.router.navigate([`/themes/${this.theme._id}`])
+      },
+      error: (err) => {
+        if(err.status === 403) {
+          alert('Unauthorized')
+          this.router.navigate([`/themes/${this.theme._id}`])
+        } else {
+          alert('Try again!')
+        }
+      }
+    })
+  }
+   
+  ngOnInit(): void {
+    this.fetchRecipes()
+  }
+  fetchRecipes(): void {
+    const id = this.activateRoute.snapshot.params['themeId']
+    this.apiService.getRecipe(id).subscribe((recipe) => {
+      this.theme= recipe
+    })
+  }
 }

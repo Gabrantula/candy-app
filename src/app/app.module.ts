@@ -44,7 +44,7 @@ import { ProfileModule } from './profile/profile.module';
     AppRoutingModule,
     
   ],
-  providers: [appInterceptorProvider],//, authInterceptorProvider],
+ // providers: [appInterceptorProvider],//, authInterceptorProvider],
   //providers: [appInterceptorProvider, authInterceptorProvider, httpInterceptorProvider],
   bootstrap: [AppComponent]
 })

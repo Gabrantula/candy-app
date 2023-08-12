@@ -19,20 +19,24 @@ export class CreateComponent {
 
   obs$ = new Observable()
 
-  createSubmitHandler(form: NgForm): void {
+  create(form: NgForm): void {
     if (form.invalid) {
       return
     }
 
-    const { imageUrl, themeName, postText } = form.value;
-   // this.apiService.createRecipe(imageUrl, themeName, postText).subscribe()
-    this.apiService.createRecipe(imageUrl, themeName, postText).subscribe({
-      next: (response) => {
-        console.log('Recipe created successfully:', response);
-        this.router.navigate(['/my-page']);
+    const value: { imageUrl: string, themeName: string, postText: string } = form.value;
+
+    this.apiService.createRecipe(value).subscribe({
+      next: (res) => {
+      
+        this.router.navigate(['/themes']);
       },
-      error: (error) => {
-        console.error('Error creating recipe:', error)
+      error: (err) => {
+       if(err.status === 401) {
+        alert('Unauthorized')
+       } else {
+        alert('Try again')
+       }
       }
     })
     

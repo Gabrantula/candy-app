@@ -1,6 +1,6 @@
 <section id="create-page">
     <div class="form">
-        <form class="create-form" #form="ngForm" (ngSubmit)="createSubmitHandler(form)">
+        <form class="create-form" #form="ngForm" (ngSubmit)="create(form)">
             <h2>Create candy recipe</h2>
             <p>Candy image</p>
             <input type="text" name="imageUrl" placeholder="Enter candy image" ngModel #inputName="ngModel" required />

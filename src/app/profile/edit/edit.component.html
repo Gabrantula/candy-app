@@ -1,9 +1,49 @@
 <section id="edit-page">
     <div class="form">
-        <form class="edit-form" [formGroup]="form" (ngSubmit)="saveEditHandler()" >
-            <h2>Edit candy recipe</h2>
+        <form class="edit-form" #form="ngForm" (ngSubmit)="edit(form)" >
+            <h2>Edit candy recipe</h2> 
 
-         <!-- <input type="hidden" name="_id" formControlName="_id" />-->    
+            <p>Candy image</p>
+            <input type="text" name="imageUrl" placeholder="Candy image" [(ngModel)]="theme.imageUrl" #inputName="ngModel" required />
+            <ng-container *ngIf="inputName.touched">
+              <p class="error" *ngIf="inputName.errors?.['required']">
+                Image is required.
+              </p>
+              <p class="error" *ngIf="inputName?.hasError('appEditValidator')">
+
+                Invalid URL format!
+              </p>
+            </ng-container>
+
+            <p>Title</p>
+            <input type="text" name="themeName" placeholder="Title" [(ngModel)]="theme.themeName" #inputName="ngModel" required />
+            <ng-container *ngIf="inputName.touched">
+              <p class="error" *ngIf="inputName.errors?.['required']">
+                Title is required.
+              </p>
+            </ng-container>
+
+            <p>Description</p>
+            <textarea name="postText" placeholder="Description" [(ngModel)]="theme.postText" #textAreaInput="ngModel" required minlength="10"></textarea>
+            <ng-container *ngIf="textAreaInput.touched">
+              <p class="error" *ngIf="textAreaInput.errors?.['required']">
+                The field with your post is required.
+              </p>
+              <p class="error" *ngIf="textAreaInput.errors?.['minlength']">
+                Post must be at least 10 characters long.
+              </p>
+            </ng-container>
+
+            <div>
+                <button type="submit" [disabled]="form.invalid" >Edit</button>
+            </div>
+        </form>
+    </div>
+</section> 
+<!-- <section id="edit-page">
+    <div class="form">
+        <form class="edit-form" [formGroup]="form" (ngSubmit)="edit()" >
+            <h2>Edit candy recipe</h2> 
 
             <p>Candy image</p>
             <input type="text" name="imageUrl" placeholder="Candy image" formControlName="imageUrl" />
@@ -38,54 +78,8 @@
               </ng-container>
 
             <div>
-                <button type="submit" [disabled]="form.invalid || isSubmitting" >Edit</button>
+                <button type="submit" [disabled]="form.invalid" >Edit</button>
             </div>
         </form>
     </div>
-</section> 
-  <!--
-<section id="edit-page">
-    <div class="form">
-        <form class="edit-form" *ngIf="formData" [formGroup]="testform" (ngSubmit)="updateRecipe(testform)">
-            <h2>Edit candy recipe</h2>
-            <input type="hidden" name="_id" formControlName="_id" value="{{formData._id}}">
-            <p>Candy image</p>
-            <input type="text" name="imageUrl" placeholder="Candy image" formControlName="imageUrl" value="{{testform.value.imageUrl}}" />
-            <ng-container *ngIf="form.get('imageUrl')?.touched">
-                <p class="error" *ngIf="form.get('imageUrl')?.errors?.['required']">
-                  Image is required!
-                </p>
-              
- <p class="error" *ngIf="form.get('imageUrl')?.errors?.['appEditValidator']">
-                  Image URL is not valid!
-                </p>
-               
-               
-              </ng-container>
-
-            <p>Title</p>
-            <input type="text" name="title" placeholder="Title" formControlName="themeName" value="{{testform.value.themeName}}" />
-            <ng-container *ngIf="form.get('themeName')?.touched">
-                <p class="error" *ngIf="form.get('themeName')?.errors?.['required']">
-                  Title is required!
-                </p>  
-            </ng-container>
-
-            <p>Description</p>
-            <textarea name="description" placeholder="Description" formControlName="postText">{{testform.value.postText}}</textarea>
-            <ng-container *ngIf="form.get('postText')?.touched">
-                <p class="error" *ngIf="form.get('postText')?.errors?.['required']">
-                  Description is required!
-                </p>
-                <p class="error" *ngIf="form.get('postText')?.errors?.['minlength']">
-                  Description length should not be less than 10!
-                </p>
-              </ng-container>
-
-            <div>
-                <button type="submit">Edit</button>
-            </div>
-        </form>
-    </div>
-</section>
- -->
+</section> -->

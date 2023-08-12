@@ -52,7 +52,7 @@ const routes: Routes = [
       {
         path: ':themeId/edit',
         component: EditComponent,
-         canActivate: [AuthActivate],
+        // canActivate: [AuthActivate],
       },
     ]
   },

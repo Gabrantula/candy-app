@@ -43,17 +43,16 @@
             <h2>{{theme.themeName}}</h2>
             <p>{{theme.postText}}</p>
            
-           
         </div>
 
         <div class="action-btn">
-             <div class="auth" *ngIf="isLoggedIn && isOwner(theme._ownerId)"> 
+             <div class="auth" *ngIf="this.authService.isLoggedIn && this.isOwner"> 
          
                  <a class="action" routerLink="edit">Edit</a>
                 <!-- <a class="action" (click)="toggleEditMode()">Edit</a>-->
-                <a class="action" routerLink="javascript:void(0)">Delete</a>
+                <a class="action" (click)="delete()">Delete</a>
             </div>
-             <div class="not-auth" *ngIf="isLoggedIn && !isOwner(theme._ownerId)">
+             <div class="not-auth" *ngIf="this.authService.isLoggedIn && !this.isOwner">
 
                 <a class="action" routerLink="comments">Comments</a>
             </div>

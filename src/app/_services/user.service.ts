@@ -84,12 +84,7 @@ login(email: string, password: string): Observable<UserId> {
         this.user$$.next(user);
       }),
     
-<<<<<<< HEAD:src/app/_services/user.service.ts
-     // mergeMap(() => {
-     //   return this.http.get<UserId>(`http://localhost:3030/data/recipes`);
-    //  }),
-      
-=======
+
       mergeMap(() => {
         return this.http.get<UserId>(`${baseUrl}/profile`, { headers });
       }),
@@ -194,7 +189,7 @@ login(email: string, password: string): Observable<UserId> {
 
   }
 }
-<<<<<<< HEAD:src/app/_services/user.service.ts
+
 */
 
 import { Injectable } from '@angular/core';
@@ -213,19 +208,24 @@ export class UserService {
   
   constructor(private http: HttpClient) { }
 
-  clean(): void {
+  saveUser(key: string, value: string): void {
+    localStorage.setItem(key, value)
+  }
+  clearUser(): void {
     window.localStorage.clear()
   }
 
+
   //ili user: UserId ili any
  // public saveUser(user: UserId): void {
+  /*
   public saveUser(user: UserId): void {
     window.localStorage.removeItem(USER_KEY)
     console.log(user.accessToken);
     
     window.localStorage.setItem(USER_KEY, JSON.stringify(user.accessToken)!)
   // window.localStorage.setItem(USER_KEY, JSON.stringify(user))
-  }
+  }*/
 
   public getUser(): any {
     const user = window.localStorage.getItem(USER_KEY)
@@ -234,6 +234,7 @@ export class UserService {
     }
     return {}
   }
+  /*
   //user: UserId | undefined
   public isLoggedIn(): boolean {
     const user = window.localStorage.getItem(USER_KEY)
@@ -243,7 +244,7 @@ export class UserService {
     }
     return false
   }
-
+*/
   private userId: string | null = null
 
   public  getUserId(): string | null {
@@ -274,5 +275,4 @@ export class UserService {
   }
 
 }
-=======
->>>>>>> 0bb75b987cf11ea8d1911ce6fb5449ac7db9a173:src/app/profile/user.service.ts
+

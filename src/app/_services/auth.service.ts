@@ -18,6 +18,12 @@ export class AuthService {
   private userSubj: BehaviorSubject<UserId | null>
   public user: Observable<UserId | null>
 
+
+  //new //
+  isLoggedIn: boolean = false 
+
+
+
   constructor(private http: HttpClient, private router: Router) {
     //this.userSubj = new BehaviorSubject(localStorage.getItem('auth-user'))
     this.userSubj = new BehaviorSubject(JSON.parse(localStorage.getItem('auth-user')!))
@@ -30,9 +36,10 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post<UserId>(
       `${baseUrl}/login`,
-      { email, password },
+      { email: email, password: password },
       httpOptions
     )
+    /*
       .pipe(tap(user => {
        // localStorage.setItem('auth-user', JSON.stringify(user))
        localStorage.setItem('auth-user', user.accessToken!)
@@ -42,34 +49,27 @@ export class AuthService {
        // console.log(this.userSubj);
         
         return user
-      }))
+      }))*/
   }
 
   register(username: string, email: string, password: string, rePass: string): Observable<UserId> {
     return this.http.post<UserId>(
       `${baseUrl}/register`,
       {
-        username,
-        email,
-        password,
-        rePass
+        username: username,
+        email: email,
+        password: password,
+        rePass: rePass
       },
       httpOptions
     )
+    /*
       .pipe(tap(user => {
         localStorage.setItem('auth-user', JSON.stringify(user))
         this.userSubj.next(user)
         return user
-      }))
+      })) */
   }
 
-  logout() {
-    return this.http
-      .post<UserId>(`${baseUrl}/logout`,{}, httpOptions)
-      .pipe(tap(() => {
-        localStorage.removeItem('auth-user')
-        this.userSubj.next(null)
-      }))
-    // return this.http.post<UserId>(`${baseUrl}/logout`, {}, httpOptions)
-  }
 }
+

@@ -31,8 +31,7 @@ export class RegisterComponent implements OnInit {
       }
     ),
   });
-  isSuccessful = false
-  isSignUpFailed = false
+
   errorMessage=''
 
   constructor(
@@ -42,9 +41,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit(): void {
 
-  }
   register(): void {
     if (this.form.invalid) {
       return;
@@ -60,23 +57,35 @@ export class RegisterComponent implements OnInit {
     
     this.authService
       .register(username!, email!, password!, rePass!)
-      .subscribe(() => {
-        this.router.navigate(['/themes']);
-      });
-      /*
-      this.authService
-       .register(username!,email!, password!, rePass!).subscribe({
-        next: data => {
-          this.userService.saveUser(data)
-          console.log(data);
-         // this.isSuccessful= true
-         // this.isSignUpFailed = false
-          this.router.navigate(['/'])
+      .subscribe({
+        next: (res) => {
+          if(res.accessToken) {
+            this.userService.clearUser
+
+            this.userService.saveUser('accessToken', res.accessToken)
+            this.userService.saveUser('email', res.email)
+            this.userService.saveUser('username', res.username)
+            this.userService.saveUser('userId', res._id)
+          }
+          this.authService.isLoggedIn = true
+          this.router.navigate(['/themes'])
         },
-        error: err => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true
+        error: (err) => {
+          if(err.status === 409) {
+            alert("An acount already exists")
+          } else {
+            alert('Try again!')
+          }
         }
-       })*/
+      })
+     // .subscribe(() => {
+     //   this.router.navigate(['/themes']);
+   //   });
+     
+  }
+
+  ngOnInit(): void {
+localStorage.clear()
+this.authService.isLoggedIn = false
   }
 }

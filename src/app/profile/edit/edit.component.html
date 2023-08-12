@@ -4,21 +4,21 @@
             <h2>Edit candy recipe</h2> 
 
             <p>Candy image</p>
-            <input type="text" name="imageUrl" placeholder="Candy image" [(ngModel)]="theme.imageUrl" #inputName="ngModel" required />
-            <ng-container *ngIf="inputName.touched">
-              <p class="error" *ngIf="inputName.errors?.['required']">
+            <input type="text" name="imageUrl" placeholder="Candy image" [(ngModel)]="theme.imageUrl" #inputImageUrl="ngModel" required />
+            <ng-container *ngIf="inputImageUrl.touched">
+              <p class="error" *ngIf="inputImageUrl.errors?.['required']">
                 Image is required.
               </p>
-              <p class="error" *ngIf="inputName?.hasError('appEditValidator')">
+              <p class="error" *ngIf="inputImageUrl.errors?.['appEditValidator']">
 
                 Invalid URL format!
               </p>
             </ng-container>
 
             <p>Title</p>
-            <input type="text" name="themeName" placeholder="Title" [(ngModel)]="theme.themeName" #inputName="ngModel" required />
-            <ng-container *ngIf="inputName.touched">
-              <p class="error" *ngIf="inputName.errors?.['required']">
+            <input type="text" name="themeName" placeholder="Title" [(ngModel)]="theme.themeName" #inputThemeName="ngModel" required />
+            <ng-container *ngIf="inputThemeName.touched">
+              <p class="error" *ngIf="inputThemeName.errors?.['required']">
                 Title is required.
               </p>
             </ng-container>

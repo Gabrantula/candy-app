@@ -35,11 +35,10 @@ export class ApiService {
   }
 
 
-  getRecipesByUserId(userId: string): Observable<Recipes[]> {
-
+  getOwnerRecipes(id: string | null | undefined) {
 
     let { apiUrl } = environment;
-    return this.http.get<Recipes[]>(`${apiUrl}/recipes?_ownerId=${userId}`, httpOptions)
+    return this.http.get<Recipes[]>(`${apiUrl}?where=_ownerId%20LIKE%20%22${id}%22&sortBy=_createdOn%20desc`)
   }
 
   //catalog
@@ -85,20 +84,5 @@ export class ApiService {
       headers: headers
     })
   }
-
-  /*
-  getThemeAuthorId(themeId: string): Observable<string> {
-    const { apiUrl } = environment
-    return this.http.get<{ authorId: string }>(`${apiUrl}/${themeId}/_ownerId`)
-      .pipe(
-        map(res => res.authorId),
-        catchError(err => {
-          console.error('Error fetching theme author ID:', err)
-          return throwError(`Error fetching theme author ID `)
-        })
-      )
-  }
-*/
-
  
 }

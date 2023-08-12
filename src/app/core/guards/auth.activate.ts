@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -47,3 +47,4 @@ export class AuthActivate implements CanActivate {
     return true
   }
 }
+*/

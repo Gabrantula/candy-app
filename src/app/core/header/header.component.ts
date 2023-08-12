@@ -11,7 +11,9 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class HeaderComponent implements OnInit{
 
-username=''
+user: string | undefined = ""
+username: string | null = localStorage.getItem('username')
+
   index = 0
   btnClass: any;
   iptClass: any;
@@ -34,7 +36,8 @@ username=''
 
   ngOnInit(): void {
     this.itIsLoggedIn()
-   this.username!= this.authService.userValue?.username 
+    this.user= this.username!!
+  // this.username!= this.authService.userValue?.username 
   }
   /*
 get isLoggedIn(): boolean {

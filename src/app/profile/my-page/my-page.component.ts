@@ -12,27 +12,23 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./my-page.component.css'],
 })
 export class MyPageComponent implements OnInit {
+  id: string | null | undefined = localStorage.getItem("userId")
+
   recipes: Recipes[] = [];
 
-  constructor(private authService:AuthService, private apiService: ApiService, private userService: UserService) { }
+  constructor(private authService: AuthService, private apiService: ApiService, private userService: UserService) { }
 
   ngOnInit(): void {
-  
-    const loggedInUserId = this.userService.getUserId()
-  
 
-    if (loggedInUserId) {
-      
-      this.apiService.getRecipesByUserId(loggedInUserId).subscribe({
-        next: (myRecipes) => {
-          this.recipes = myRecipes.filter((recipe) => recipe._ownerId === loggedInUserId)
-          console.log(loggedInUserId);
-          
-        },
-        error: (error) => {
-          console.error('Error fetching recipes:', error)
-        }
-      })
-    }
+    this.apiService.getOwnerRecipes(this.id).subscribe({
+      next: (myRecipes) => {
+        this.recipes = myRecipes
+
+      },
+      error: (error) => {
+        console.error('Error fetching recipes:', error)
+      }
+    })
   }
 }
+

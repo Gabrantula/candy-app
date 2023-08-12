@@ -9,7 +9,7 @@ import { DetailsComponent } from './details/details.component';
 import { MainComponent } from '../main/main.component';
 import { CommentsComponent } from '../comments/comments.component';
 
- import { AuthActivate } from '../core/guards/auth.activate';
+// import { AuthActivate } from '../core/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -25,12 +25,12 @@ const routes: Routes = [
   {
     path: 'my-page',
     component: MyPageComponent,
-     canActivate: [AuthActivate],
+    // canActivate: [AuthActivate],
   },
   {
     path: 'create',
     component: CreateComponent,
-     canActivate: [AuthActivate],
+   //  canActivate: [AuthActivate],
   },
 
   {

@@ -10,6 +10,11 @@
         <h1>Making Life Sweeter!</h1>
         <h3>Eet More Sweets With Love!</h3>
         <h3>Share with us your favorite recipe</h3>
+
+        <h3 class="animation" *ngIf="display" @inOutPaneAnimation>
+Dive into the world of sweetnes... Dream on... Create.. Fly...
+        </h3>
+        <button class="dashboard" (click)="display = !display">See my wish especially for you</button>
     </div>
 
     <div class="welcome">

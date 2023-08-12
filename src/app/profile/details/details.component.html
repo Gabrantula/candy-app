@@ -47,12 +47,14 @@
         </div>
 
         <div class="action-btn">
-            <div class="auth" *ngIf="isLogged && isOwner(theme._ownerId)">
+             <div class="auth" *ngIf="isLoggedIn && isOwner(theme._ownerId)"> 
+         
                  <a class="action" routerLink="edit">Edit</a>
                 <!-- <a class="action" (click)="toggleEditMode()">Edit</a>-->
                 <a class="action" routerLink="javascript:void(0)">Delete</a>
             </div>
-            <div class="not-auth" *ngIf="isLogged && !isOwner(theme._ownerId)">
+             <div class="not-auth" *ngIf="isLoggedIn && !isOwner(theme._ownerId)">
+
                 <a class="action" routerLink="comments">Comments</a>
             </div>
         </div>

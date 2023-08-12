@@ -6,8 +6,8 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { ApiService } from 'src/app/api.service';
-import { UserService } from 'src/app/profile/user.service';
+import { ApiService } from 'src/app/_services/api.service';
+import { UserService } from 'src/app/_services/user.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -23,28 +23,26 @@ export class AuthActivate implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
 
-    // return this.userService.isLogged;
-    if (!this.userService.isLogged) {
-      return false
-    }
-    const themeId = route.paramMap.get('themeId')
+    const themeId = route.paramMap.get('themeId');
+
     if (themeId) {
       const userId = this.userService.getUserId()
       if (userId) {
-       return this.apiService.getThemeAuthorId(themeId).pipe(
-        map(themeAuthorId => {
-          if(userId === themeAuthorId) {
-            return true
-          } else {
-            return false
-          }
-        })
-       )
-      
+        return this.apiService.getThemeAuthorId(themeId).pipe(
+          map(themeAuthorId => {
+            if (userId === themeAuthorId) {
+              return true
+            } else {
+              return false
+            }
+          })
+        )
+
       }
       else {
         return false
       }
+     
     }
     return true
   }

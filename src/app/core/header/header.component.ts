@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/profile/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,10 @@ import { UserService } from 'src/app/profile/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+ // private roles: string[] =[]
+  //isLoggedIn = false
+  username?: string
 
   index = 0
   btnClass: any;
@@ -27,8 +32,8 @@ export class HeaderComponent {
     }
   }
 
-  constructor(private userService: UserService, private router: Router) { }
-
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+/*
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
   }
@@ -36,15 +41,52 @@ export class HeaderComponent {
   get username(): string {
     return this.userService.user?.username || '';
   }
+*/
+/*ngOnInit(): void {
+  this.isLoggedIn = this.userService.isLoggedIn()
 
+  if(this.isLoggedIn) {
+    const user = this.userService.getUser()
+   // this.roles = user.roles
+
+   this.username= user.username
+  }
+
+}*/
+
+get isLoggedIn(): boolean {
+  const user = this.userService.getUser()
+  this.username= user.username
+  return this.userService.isLoggedIn();
+
+}
+/*
+get username(): string {
+  return this.userService.user?.username || '';
+}*/
   logout(): void {
-    this.userService.logout().subscribe({
+
+    this.authService.logout().subscribe({
+      next: res => {
+        console.log(res);
+        this.userService.clean()
+        
+       // window.location.reload()
+        this.router.navigate(['/auth/login']);
+      },
+      error: err => {
+        console.log(err);
+        this.router.navigate(['/auth/login']);
+      }
+    })
+    /*
+    this.authService.logout().subscribe({
       next: () => {
         this.router.navigate(['/auth/login']);
       },
       error: () => {
         this.router.navigate(['/auth/login']);
       },
-    });
+    });*/
   }
 }

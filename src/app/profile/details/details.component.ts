@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/_services/api.service';
 import { Recipes } from 'src/app/types/theme';
-import { UserService } from '../user.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-details',
@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
 })
 export class DetailsComponent implements OnInit{
 
+  isLoggedIn = false
    theme: Recipes | undefined
 
    constructor(
@@ -18,11 +19,17 @@ export class DetailsComponent implements OnInit{
     private activateRoute: ActivatedRoute, 
     private userService: UserService
     ) {}
-
+/*
     get isLogged(): boolean {
       return this.userService.isLogged
-    }
+    }*/
     ngOnInit(): void {
+      this.isLoggedIn = this.userService.isLoggedIn()
+
+      if(this.isLoggedIn) {
+        const user = this.userService.getUser()
+       
+      }
       this.fetchTheme()
     }
     fetchTheme(): void {

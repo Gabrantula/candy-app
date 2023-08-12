@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Gaby",
+      "email": "gaby@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": 2,
+      "username": "Roberto",
+      "email": "roby@gmail.com",
+      "password": "111111"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "123123"
+    },
+    {
+      "username": "test2",
+      "password": "123",
+      "email": "test2@gmail.com",
+      "id": 4
+    }
+  ],
+  "recipes": [
+    {
+      "id": 1,
+      "themeName": "Lollipop",
+      "postText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed facilis non, aliquid odio.",
+      "imageUrl": "/assets/catalog-img/card-1 copy.jpg",
+      "_ownerId": "1"
+    },
+    {
+      "id": "2",
+      "themeName": "Donut with shake",
+      "postText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed facilis non, aliquid odio.",
+      "imageUrl": "/assets/catalog-img/card-2 copy.jpg",
+      "_ownerId": "1"
+    },
+    {
+      "id": "3",
+      "themeName": "French macaron",
+      "postText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed facilis non, aliquid odio.",
+      "imageUrl": "/assets/catalog-img/card-3 copy.jpg",
+      "_ownerId": "2"
+    },
+    {
+      "imageUrl": "https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg",
+      "themeName": "gagagagag",
+      "postText": "ssssssssss",
+      "id": "vLApIFE"
+    }
+  ]
+}

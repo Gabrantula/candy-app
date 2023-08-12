@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+/*import { Injectable, OnDestroy } from '@angular/core';
 import { UserId } from '../types/user-id';
 import { Recipes } from '../types/theme';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class UserService implements OnDestroy {
   private userId: string | null = null
 
   private userTokenKey = 'auth-token'
-  private userToken: string | null = null
+ // private userToken: string | null = null
   
   get isLogged(): boolean {
     return !!this.user;
@@ -32,94 +32,62 @@ export class UserService implements OnDestroy {
 
   constructor(private http: HttpClient) {
   //  const token = localStorage.getItem('auth-token') || ""
-    this.subscription = this.user$.subscribe((user: any): any => {
+    this.subscription = this.user$.subscribe((user) => {
       this.user = user;
     });
   }
-  get token() {
-    return localStorage.getItem('auth-token')|| ""
-  }
+ 
   
   public getAuthToken(): string | null {
   
-    return localStorage.getItem("auth-token")
+    const authToken =localStorage.getItem("auth-token")
+    console.log('Retrieved token:', authToken);
+    
+    return authToken
    // return localStorage.getItem(this.userTokenKey)
   }
 
   clearAuthToken(): void {
-    this.userToken = null
+  //  this.userToken = null
     localStorage.removeItem(this.userTokenKey)
   }
  // private storeToken(token: string): void {
-  //  localStorage.setItem("auth-token", token)
+  //  localStorage.setItem("", token)
   //  this.getAuthToken()
    // this.userToken = token
    // localStorage.setItem(this.userTokenKey, token)
  // }
 
 
-    /** login(email: string, password: string): Observable<UserId> {
-    const baseUrl = `http://localhost:3030/users`
-    const headers = this.getCommonHeaders()
-
-    return this.http
-      // .post<UserId>('/api/login', {email, password})
-      .post<UserId>(`${baseUrl}/login`, { email, password }, { headers })
-      .pipe(tap((user) => {
-
-        //   this.storeAuthToken(user.accessToken)
-        this.storeToken(user.accessToken)
-
-        console.log('Token:', user.accessToken);
-        this.user$$.next(user);
-
-      }))
-  } */
-  /*
-  login(email: string, password: string): Observable<UserId> {
-    const authToken = this.getAuthToken()
-    const headers = this.getCommonHeaders(authToken !== null ? authToken : undefined) 
-
-
-    const baseUrl = `http://localhost:3030/users`
-
-    return this.http
-      .post<UserId>(`${baseUrl}/login`, { email, password }, {headers})
-      .pipe(tap((user) => {
-        if(authToken) {
-            localStorage.setItem('auth-token', user.accessToken)
-        //  localStorage.setItem('auth-token', authToken)
-        }
-       
-        console.log('uauu', user.accessToken);
-        console.log(headers);
-        
-      //  localStorage.getItem(user.accessToken)
-        this.user$$.next(user)
-    }));
-  }
-*/
 
 login(email: string, password: string): Observable<UserId> {
-  const authToken = this.getAuthToken();
-  const headers = this.getCommonHeaders(authToken !== null ? authToken : undefined);
+
+ // const headers = this.getCommonHeaders()
+ // const headers = this.getCommonHeaders(authToken !== null ? authToken : undefined);
   const baseUrl = `http://localhost:3030/users`;
 
   return this.http
-    .post<UserId>(`${baseUrl}/login`, { email, password }, { headers })
+    .post<UserId>(`${baseUrl}/login`, { email, password })
     .pipe(
       tap((user) => {
-        if (authToken) {
+       
+        console.log('Login response', user);
+        console.log('Access Token:', user.accessToken);
+        
+       // if (authToken) {
+        if (user.accessToken) {
           localStorage.setItem('auth-token', user.accessToken);
+          console.log('Token stored in localstorage:', user.accessToken);
+          
         }
-        console.log('uauu', user.accessToken);
-        console.log(headers);
+       
         this.user$$.next(user);
       }),
-      // Chain another observable to retrieve the userId after the login request
-      mergeMap(() => {
-        return this.http.get<UserId>(`${baseUrl}/profile`, { headers });
-      }),
+    
+     // mergeMap(() => {
+     //   return this.http.get<UserId>(`http://localhost:3030/data/recipes`);
+    //  }),
+      
       tap((user) => {
         if (user && user._id) {
           this.userId = user._id; // Update the userId after successful login
@@ -160,40 +128,21 @@ login(email: string, password: string): Observable<UserId> {
   logout() {
    
     const baseUrl = `http://localhost:3030/users`
-   // const headers = this.getCommonHeaders()
-   const authToken = this.getAuthToken()
-   const headers = this.getCommonHeaders(authToken !== null ? authToken : undefined) 
+  //  const headers = this.getCommonHeaders()
+
+  // const authToken = this.getAuthToken()
+   //const headers = this.getCommonHeaders(authToken !== null ? authToken : undefined) 
   // this.clearAuthToken()
    // const headers = this.getCommonHeaders() 
     return this.http
-    .post<UserId>(`${baseUrl}/logout`, {}, { headers })
+    .post<UserId>(`${baseUrl}/logout`, {})
       .pipe(tap(() => {
     this.clearAuthToken();
       this.user$$.next(undefined);
     }));
       
   }
-/*
 
-  logout() {
-    const baseUrl = `http://localhost:3030/users`
-    let headers = this.getCommonHeaders()
-
-    return this.http
-
-      .post<UserId>(`${baseUrl}/logout`, {}, { headers })
-      .pipe(tap(() => {
-        this.clearAuthToken();
-        //  this.clearAuthToken();
-        this.user$$.next(undefined);
-      }))
-  }
-
-  getProfile() {
-    return this.http
-      .get<UserId>('/api/users/profile')
-      .pipe(tap((user) => this.user$$.next(user)));
-  }*/
   getProfile(): Observable<Recipes[]> {
 
     const userId = this.getUserId()
@@ -202,7 +151,10 @@ login(email: string, password: string): Observable<UserId> {
     }
     // const baseUrl= `http://localhost:3030/users`
     const baseUrl = `http://localhost:3030/data/recipes`
-    const headers = this.getCommonHeaders()
+
+    const authToken = this.getAuthToken()
+    const headers = this.getCommonHeaders(authToken)
+   // const headers = this.getCommonHeaders()
 
     return this.http
       // .get<UserId>('/api/users/profile')
@@ -216,31 +168,102 @@ login(email: string, password: string): Observable<UserId> {
       }))
   }
 
-  updateProfile(username: string, email: string) {
-    return this.http
-      .put<UserId>('/api/users/profile', { username, email})
-      .pipe(tap((user) => this.user$$.next(user)));
-  }
 
-  public getCommonHeaders(authToken?: string): HttpHeaders {
-    //  let authToken = this.getAuthToken()
- // let authToken = localStorage.getItem("auth-token")
-  //let authToken = this.user?.accessToken
+  public getCommonHeaders(authToken?: string | null): HttpHeaders {
+   
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        
       })
-      if (authToken) {
-  
+     // if (authToken) {
+      if (authToken !== null && authToken !== undefined) {
         headers = headers.set('X-Authorization', `Bearer ${authToken}`)
-     
       }
-      console.log('Common', authToken);
+      console.log('Common', headers);
       
       return headers
     }
+    
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
 
   }
+}
+*/
+
+import { Injectable } from '@angular/core';
+import { UserId } from '../types/user-id';
+import { Recipes } from '../types/theme';
+import { Observable, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+const USER_KEY = 'auth-user'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  
+  constructor(private http: HttpClient) { }
+
+  clean(): void {
+    window.localStorage.clear()
+  }
+
+  //ili user: UserId ili any
+ // public saveUser(user: UserId): void {
+  public saveUser(user: UserId): void {
+    window.localStorage.removeItem(USER_KEY)
+    console.log(user.accessToken);
+    
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user.accessToken)!)
+  // window.localStorage.setItem(USER_KEY, JSON.stringify(user))
+  }
+
+  public getUser(): any {
+    const user = window.localStorage.getItem(USER_KEY)
+    if(user) {
+      return JSON.parse(user)
+    }
+    return {}
+  }
+  //user: UserId | undefined
+  public isLoggedIn(): boolean {
+    const user = window.localStorage.getItem(USER_KEY)
+    if(user) {
+    
+      return true
+    }
+    return false
+  }
+
+  private userId: string | null = null
+
+  public  getUserId(): string | null {
+    console.log(this.userId);
+    
+    return this.userId
+  }
+
+  getProfile(): Observable<Recipes[]> {
+
+    const userId = this.getUserId()
+    if (!userId) {
+      return of([])
+    }
+    
+    const baseUrl = `http://localhost:3030/data/recipes`
+
+    return this.http
+      // .get<UserId>('/api/users/profile')
+      .get<Recipes[]>(`${baseUrl}?userId=${userId}`)
+      .pipe(map((recipes) => {
+        return recipes.map(recipe => {
+          return {
+            ...recipe
+          }
+        })
+      }))
+  }
+
 }

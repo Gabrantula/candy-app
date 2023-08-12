@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipes } from '../types/theme';
-import { ApiService } from '../api.service';
-import { UserService } from '../profile/user.service';
+import { ApiService } from '../_services/api.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-catalog',
@@ -9,13 +9,15 @@ import { UserService } from '../profile/user.service';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit{
+  
  catalog: Recipes[] =[]
  isLoading: boolean = true
 
  constructor(private apiService: ApiService, private userService: UserService) {}
 
+ 
  get isLogged(): boolean {
-  return this.userService.isLogged
+  return this.userService.isLoggedIn()
  }
  ngOnInit(): void {
   
@@ -28,7 +30,7 @@ export class CatalogComponent implements OnInit{
     },
     error: (err) => {
       this.isLoading = false;
-      console.error(`Error: ${err}`)
+      console.error(`Error: ${err.errorMessage}`)
     }
    })
  }

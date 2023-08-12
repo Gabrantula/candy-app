@@ -1,59 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DEFAULT_EMAIL_DOMAINS } from 'src/app/shared/constants';
-import { UserService } from '../user.service';
+import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  appEmailDomains= DEFAULT_EMAIL_DOMAINS
+  appEmailDomains = DEFAULT_EMAIL_DOMAINS
+  form = this.fb.group({
 
-  constructor(private userService: UserService, private router: Router) {}
+    email: [
+      '',
+      [Validators.required]],
+    password: ['', [Validators.required]],
 
- /* login(form: NgForm) {
-    if(form.invalid) {
-      return
+  });
+  isLoggedIn = false;
+  //isLoginFailed = false
+  errorMessage = ''
+  //roles: string[] = []
+
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private fb: FormBuilder,) { }
+
+  ngOnInit(): void {
+    if (this.userService.isLoggedIn()) {
+      this.isLoggedIn = true
+     // this.roles = this.userService.getUser().roles
     }
+  }
 
-    const { email, password } = form.value
-
-    this.userService.login(email, password).subscribe((res: any) => {
-      console.log('res', res.accessToken);
-      localStorage.setItem("auth-token", res.accessToken)
-      
-      this.router.navigate(['/home'])
-    })
-  }*/
-  login(form: NgForm) {
-    if (form.invalid) {
+  login(): void {
+    if (this.form.invalid) {
       return;
     }
-  
-    const { email, password } = form.value;
-  
-    this.userService.login(email, password).subscribe(
-      (res: any) => {
-        console.log('Login response:', res); // Log the entire response object
-  
-        if (res && res.accessToken) {
-          console.log('res', res.accessToken);
-          localStorage.setItem('auth-token', res.accessToken);
-          this.router.navigate(['/home']);
-        } else {
-          console.error('Login response does not have accessToken property');
+
+    const { email, password } = this.form.value;
+
+    /*
+    this.authService.login(email!, password!)
+      .subscribe(() => {
+        this.isLoggedIn = true
+        this.router.navigate(['/']);
+      });*/
+      
+   this.authService.login(email!, password!)
+      .subscribe({
+        next: data => {
+          this.userService.saveUser(data)
+          console.log(data);
+          
+          this.isLoggedIn = true
+      
+          this.router.navigate(['/'])
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
+       
         }
-      },
-      (error) => {
-        console.error('Login error:', error);
-        // Handle the error as needed
-      }
-    );
+      })
   }
-  
-  
+
+  //reloadPage(): void {
+  //  window.location.reload()
+ // }
 }
+

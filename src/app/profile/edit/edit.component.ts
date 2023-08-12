@@ -1,11 +1,11 @@
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/_services/api.service';
 import { appEditValidator } from 'src/app/shared/validators/app-edit-validators';
-import { UserService } from '../user.service';
+import { UserService } from '../../_services/user.service';
 import { UserId } from 'src/app/types/user-id';
 
 interface Theme {
@@ -20,6 +20,9 @@ interface Theme {
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+  @Input()
+  accessToken!: string;
+  
   isSubmitting: boolean = false;
 
   editRecipe: Theme = {

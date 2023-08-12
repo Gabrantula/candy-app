@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/_services/api.service';
 import { Recipes } from 'src/app/types/theme';
-import { UserService } from '../user.service';
+import { UserService } from '../../_services/user.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs';
 export class MyPageComponent implements OnInit {
   recipes: Recipes[] = [];
 
-  constructor(private apiService: ApiService, private userService: UserService) { }
+  constructor(private authService:AuthService, private apiService: ApiService, private userService: UserService) { }
 
   ngOnInit(): void {
     /*
@@ -26,8 +27,10 @@ export class MyPageComponent implements OnInit {
     }
     */
     const loggedInUserId = this.userService.getUserId()
+   //const loggedInUserId= this.userService.getUser()
 
     if (loggedInUserId) {
+      
       this.apiService.getRecipesByUserId(loggedInUserId).subscribe({
         next: (myRecipes) => {
           this.recipes = myRecipes.filter((recipe) => recipe._ownerId === loggedInUserId)

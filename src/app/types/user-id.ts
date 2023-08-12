@@ -4,5 +4,6 @@ export interface UserId {
     email: string;
     username: string;
     password: string;
-    accessToken: string;
+    accessToken?: string;
+    roles: string
   }

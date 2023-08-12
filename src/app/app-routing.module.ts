@@ -18,32 +18,12 @@ const routes: Routes = [
 
   {path: 'home', component: HomeComponent},
 
+ // {path: 'themes', component: CatalogComponent},
+
   {path: 'auth',
    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),},
 
-   /*
-   {path: 'catalog', component: CatalogComponent},*/
-
    {path: 'Gaby-page', component: GabyPageComponent},
-
-  /* {path: 'details', component: DetailsComponent},*/
-
-  // {path: 'comments', component: CommentsComponent},
- /* 
-
-  {path: 'login', component: LoginComponent},
-
-  {path: 'register', component: RegisterComponent},
-
-  {path: 'create', component: CreateComponent},
-
-  {path: 'edit', component: EditComponent},
-
-  {path: 'my-page', component: MyPageComponent},
-
-  ,
-
-  */
 
   {path: 'error', component: ErrorComponent},
   

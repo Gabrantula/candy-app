@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environments';
 import { Recipes } from '../types/theme';
@@ -12,26 +12,26 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService implements OnDestroy {
+export class ApiService {
 
   //private themeSubj: BehaviorSubject<Recipes | null>
   //public theme: Observable<Recipes | null>
-  private theme$$ = new BehaviorSubject<Recipes | undefined>(undefined);
-  public theme$ = this.theme$$.asObservable();
+  //private theme$$ = new BehaviorSubject<Recipes | undefined>(undefined);
+ // public theme$ = this.theme$$.asObservable();
 
   theme: Recipes | undefined;
-  THEME_KEY = '[themes]';
+ // THEME_KEY = '[themes]';
 
-  subscription: Subscription
+ // subscription: Subscription
   //
 
 
   constructor(private http: HttpClient, private userService: UserService) {
     //
 
-    this.subscription = this.theme$.subscribe((theme) => {
-      this.theme = theme
-    })
+   // this.subscription = this.theme$.subscribe((theme) => {
+    //  this.theme = theme
+   // })
   }
 
 
@@ -86,6 +86,7 @@ export class ApiService implements OnDestroy {
     })
   }
 
+  /*
   getThemeAuthorId(themeId: string): Observable<string> {
     const { apiUrl } = environment
     return this.http.get<{ authorId: string }>(`${apiUrl}/${themeId}/_ownerId`)
@@ -97,10 +98,7 @@ export class ApiService implements OnDestroy {
         })
       )
   }
+*/
 
-
-  //
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe()
-  }
+ 
 }

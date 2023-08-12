@@ -17,17 +17,9 @@ export class MyPageComponent implements OnInit {
   constructor(private authService:AuthService, private apiService: ApiService, private userService: UserService) { }
 
   ngOnInit(): void {
-    /*
-    const userId = this.userService.getUserId()
-
-    if(userId) {
-      this.apiService.getRecipesByUserId(userId).subscribe((recipes) => {
-        this.recipes = recipes;
-      })
-    }
-    */
+  
     const loggedInUserId = this.userService.getUserId()
-   //const loggedInUserId= this.userService.getUser()
+  
 
     if (loggedInUserId) {
       

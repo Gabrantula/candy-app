@@ -84,10 +84,16 @@ login(email: string, password: string): Observable<UserId> {
         this.user$$.next(user);
       }),
     
+<<<<<<< HEAD:src/app/_services/user.service.ts
      // mergeMap(() => {
      //   return this.http.get<UserId>(`http://localhost:3030/data/recipes`);
     //  }),
       
+=======
+      mergeMap(() => {
+        return this.http.get<UserId>(`${baseUrl}/profile`, { headers });
+      }),
+>>>>>>> 0bb75b987cf11ea8d1911ce6fb5449ac7db9a173:src/app/profile/user.service.ts
       tap((user) => {
         if (user && user._id) {
           this.userId = user._id; // Update the userId after successful login
@@ -188,6 +194,7 @@ login(email: string, password: string): Observable<UserId> {
 
   }
 }
+<<<<<<< HEAD:src/app/_services/user.service.ts
 */
 
 import { Injectable } from '@angular/core';
@@ -267,3 +274,5 @@ export class UserService {
   }
 
 }
+=======
+>>>>>>> 0bb75b987cf11ea8d1911ce6fb5449ac7db9a173:src/app/profile/user.service.ts

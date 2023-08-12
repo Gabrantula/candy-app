@@ -78,10 +78,6 @@ export class RegisterComponent implements OnInit {
           }
         }
       })
-     // .subscribe(() => {
-     //   this.router.navigate(['/themes']);
-   //   });
-     
   }
 
   ngOnInit(): void {

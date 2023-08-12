@@ -9,7 +9,6 @@ import { DetailsComponent } from './details/details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileRoutingModule} from './profile-routing.module'
-//import { authInterceptorProvider } from '../_interceptors/auth.interceptor';
 
 
 @NgModule({

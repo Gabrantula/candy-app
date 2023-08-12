@@ -1,7 +1,6 @@
 <section id="login-page">
     <div class="form">
         <h2>Login</h2>
-        <!-- <form class="form-login" *ngIf="!isLoggedIn" #form="ngForm" (ngSubmit)="login(form)"> -->
         <form class="form-login"  [formGroup]="form" (ngSubmit)="login()">
             <p>Email</p>
             <input 
@@ -37,11 +36,7 @@
                 <button [disabled]="form.invalid" type="submit" >login</button>
             </div>
             <p class="message">Not registered? <a routerLink="/auth/register">Create an account</a></p>
-        </form>
-        <!-- <div *ngIf="isLoggedIn">
-          <h3>Welcome again!</h3> 
-         </div> -->
-       
+        </form>   
     </div>
     
 </section>

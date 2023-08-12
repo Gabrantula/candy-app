@@ -32,21 +32,14 @@ username: string | null = localStorage.getItem('username')
     }
   }
 
-  constructor(public authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.itIsLoggedIn()
     this.user= this.username!!
-  // this.username!= this.authService.userValue?.username 
+ 
   }
-  /*
-get isLoggedIn(): boolean {
-  const user = this.userService.getUser()
-  this.username= user.username
-  return this.userService.isLoggedIn();
 
-}
-*/
 itIsLoggedIn(): void {
   if(localStorage.getItem('accessToken')) {
   
@@ -62,19 +55,6 @@ itIsLoggedIn(): void {
     localStorage.clear()
     this.authService.isLoggedIn = false
     this.router.navigate(['/auth/login'])
-/*
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.userService.clean()
-     
-        this.router.navigate(['/auth/login']);
-      },
-      error: err => {
-        console.log(err);
-        this.router.navigate(['/auth/login']);
-      }
-    })
- */
+
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipes } from '../types/theme';
 import { ApiService } from '../_services/api.service';
-import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-catalog',
@@ -13,19 +12,14 @@ export class CatalogComponent implements OnInit{
  catalog: Recipes[] =[]
  isLoading: boolean = true
 
- constructor(private apiService: ApiService, private userService: UserService) {}
+ constructor(private apiService: ApiService) {}
 
- /*
- get isLogged(): boolean {
-  return this.userService.isLoggedIn()
- }*/
  ngOnInit(): void {
   
    this.apiService.getRecipes().subscribe({
     next: (themes) => {
       this.catalog = themes;
       this.isLoading = false;
-      //console.log(themes);
     },
     error: (err) => {
       this.isLoading = false;

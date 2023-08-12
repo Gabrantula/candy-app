@@ -15,7 +15,7 @@ import { GabyPageComponent } from './gaby-page/gaby-page.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { appInterceptorProvider } from './_interceptors/app.interceptor';
+//import { appInterceptorProvider } from './_interceptors/app.interceptor';
 import { SliderComponent } from './slider/slider.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ProfileModule } from './profile/profile.module';

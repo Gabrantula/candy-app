@@ -1,39 +1,5 @@
 <section id="details-page">
     <div id="details-wrapper" *ngIf="theme">
-
-        <!--   <div class="imG">
-            <img src="/assets/catalog-img/card-3 copy.jpg" alt="details">
-        </div>
-
-
-        <div id="info-wrapper">
-            <h2>French macaron</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores
-                dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed
-                facilis non, aliquid odio.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores
-                dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed
-                facilis non, aliquid odio.</p>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, atque repellendus maiores dolores
-                dolorum quis animi incidunt ullam quasi amet consectetur provident quam corporis impedit sed
-                facilis non, aliquid odio.</p>
-           
-        </div>
-
-        <div class="action-btn">
-            <div class="auth">
-                <a class="action" routerLink="/auth/edit">Edit</a>
-                <a class="action" routerLink="javascript:void(0)">Delete</a>
-            </div>
-            <div class="not-auth">
-                <a class="action" routerLink="/comments">Comments</a>
-            </div>
-        </div>
-
-        <div class="more">
-            <span>See more recipes from <a routerLink="/my-page">Gaby Ts</a> </span>
-        </div>-->
         <div class="imG">
             <img src="{{theme.imageUrl}}" alt="details">
         </div>
@@ -49,7 +15,7 @@
              <div class="auth" *ngIf="this.authService.isLoggedIn && this.isOwner"> 
          
                  <a class="action" routerLink="edit">Edit</a>
-                <!-- <a class="action" (click)="toggleEditMode()">Edit</a>-->
+              
                 <a class="action" (click)="delete()">Delete</a>
             </div>
              <div class="not-auth" *ngIf="this.authService.isLoggedIn && !this.isOwner">

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
 import { Recipes } from 'src/app/types/theme';
 import { UserService } from '../../_services/user.service';
-import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 
 
@@ -16,7 +15,7 @@ export class MyPageComponent implements OnInit {
 
   recipes: Recipes[] = [];
 
-  constructor(private authService: AuthService, private apiService: ApiService, private userService: UserService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
 

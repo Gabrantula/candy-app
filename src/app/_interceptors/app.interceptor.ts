@@ -1,4 +1,4 @@
-import {
+/*import {
     HTTP_INTERCEPTORS,
     HttpEvent,
     HttpHandler,
@@ -44,7 +44,7 @@ if(isLoggedIn && isAppUrl) {
 }
    return next.handle(req)
     //  const accessToken = sessionStorage.getItem('auth-user')
-    /*
+    
       if (accessToken) {
 
           req = req.clone({
@@ -70,7 +70,7 @@ if(isLoggedIn && isAppUrl) {
   
           return [err];
         })
-      );*/
+      );
 
     }
    
@@ -80,4 +80,4 @@ if(isLoggedIn && isAppUrl) {
     multi: true,
     useClass: AppInterceptor,
     provide: HTTP_INTERCEPTORS,
-  };
+  };*/

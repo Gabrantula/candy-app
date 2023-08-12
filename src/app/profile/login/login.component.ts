@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DEFAULT_EMAIL_DOMAINS } from 'src/app/shared/constants';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -32,13 +32,6 @@ export class LoginComponent implements OnInit {
     }
 
     const { email, password } = this.form.value;
-
-    /*
-    this.authService.login(email!, password!)
-      .subscribe(() => {
-        this.isLoggedIn = true
-        this.router.navigate(['/']);
-      });*/
       
    this.authService.login(email!, password!)
       .subscribe({

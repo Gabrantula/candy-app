@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 import { Recipes } from 'src/app/types/theme';
-import { UserService } from '../../_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -21,13 +20,9 @@ export class DetailsComponent implements OnInit {
     private apiService: ApiService,
     private activateRoute: ActivatedRoute,
     public authService: AuthService,
-   // private userService: UserService,
     private router: Router
   ) { }
-  /*
-      get isLogged(): boolean {
-        return this.userService.isLogged
-      }*/
+ 
   ngOnInit(): void {
 
     this.fetchTheme()

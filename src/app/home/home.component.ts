@@ -1,10 +1,29 @@
 import { Component } from '@angular/core';
 import { Slider } from '../slider/slider';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger("inOutPaneAnimation", [
+      transition(":enter", [
+        style({ opacity: 0, transform: "translateX(-100%)" }), //apply default styles before animation starts
+        animate(
+          "750ms ease-in-out",
+          style({ opacity: 1, transform: "translateX(0)" })
+        )
+      ]),
+      transition(":leave", [
+        style({ opacity: 1, transform: "translateX(0)" }), //apply default styles before animation starts
+        animate(
+          "600ms ease-in-out",
+          style({ opacity: 0, transform: "translateX(-100%)" })
+        )
+      ])
+    ])
+  ]
 })
 export class HomeComponent {
   slider: Slider[] = [
@@ -39,4 +58,6 @@ export class HomeComponent {
       src: '/assets/home-slider5.jpg'
     }
   ]
+
+  display= false
 }
